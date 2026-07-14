@@ -140,11 +140,11 @@ u_time : float
 
 If you are importing asset files designed specifically for Shadertoy, you must refactor the variable names inside your code block accordingly:
 
--   Rename `iTime` $\longrightarrow$ `u_time`
+-   Rename `iTime` to `u_time`
     
--   Rename `iResolution` $\longrightarrow$ `u_resolution`
+-   Rename `iResolution` to `u_resolution`
     
--   Rename `iMouse` $\longrightarrow$ `u_mouse`
+-   Rename `iMouse` to `u_mouse`
     
 
 _Shaders utilized within this project's default configurations were built by or inspired by lessons from [The Art of Code](https://www.youtube.com/TheArtofCodeIsCool)._
