@@ -93,6 +93,7 @@ Plaintext
 Flags:
     -v, --vertex <vertex-shader-file>    Path to the GLSL vertex shader source.
     -f, --fragment <fragment-shader-file>  Path to the GLSL fragment shader source.
+    -n, --no-pause                       Do not pause when the focus is lost
     -t, --timestep <ab.cd>               Frame delay step (e.g., 60.00, 30.00). 
                                          Higher values increase the delay between frames.
 
@@ -106,7 +107,8 @@ make run
 
 ```bash
 ./bin/evnc -v ./share/vertex.glsl -f ./share/fragment.glsl -t 60.0
-
+#or no-pause
+./bin/evnc -v ./share/vertex.glsl -f ./share/fragment.glsl -t 60.0 -n
 ```
 
 

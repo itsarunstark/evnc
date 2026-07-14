@@ -261,7 +261,7 @@ int parse_commandline(struct evnc_primitives *primitives,
 		
 		}
 
-		if((strcmp(arg, "-f") == 0) || (strcmp(arg, "--fragment") == 0)){
+		else if((strcmp(arg, "-f") == 0) || (strcmp(arg, "--fragment") == 0)){
 			
 			if(counter >= argc){
 				printf("\e[31m%s: please provide the fragment-shader path.\e[00m\n", "error");
@@ -271,13 +271,17 @@ int parse_commandline(struct evnc_primitives *primitives,
 		
 		}
 
-		if((strcmp(arg, "-t") == 0) || (strcmp(arg, "--timestep") == 0)){
+		else if((strcmp(arg, "-t") == 0) || (strcmp(arg, "--timestep") == 0)){
 			if(counter >= argc){
 				printf("\e[31m%s: please provide the speed of shader u_time.\e[00m\n", "error");
 				return -1;
 			}
 			double timestep = strtod(argv[counter], NULL);
 			primitives->timestep = (timestep > 0.0) ? 1./timestep : 1./60;
+		}
+
+		else if((strcmp(arg, "-n") == 0) || (strcmp(arg, "--no-pause") == 0)){
+			primitives->blocking = 0;
 		}
 
 		counter++;
@@ -288,11 +292,12 @@ int parse_commandline(struct evnc_primitives *primitives,
 }
 
 void printhelp(char const *exec_name){
-	char const *help_str = "%s -v file -f -file [-s speed]\n"
+	char const *help_str = "%s -v file -f -file [-t timestep] [-n]\n"
 		"\ta shader running tool in background for wl-roots based compositor\n"
 		"\t-v / --vertex   :              vertex source path\n"
 		"\t-f / --fragment :              fragment source path\n"
 		"\t-t / --timestep :              frame delay of the shader u_time [default : 60.00]\n"
+		"\t-n / --no-pause :              don't pause the rendering on focus loss\n"
 		"\texample:\n"
 		"\t\t%s -v ./vertex.glsl -f ./fragment.glsl\n"
 		"for bug-report or any suggestion please create a PR or email at bg47msva@gmail.com\n";
@@ -306,6 +311,7 @@ int main(int argc, char const *argv[]){
 	primitives.init_callback = 	on_init;
 	primitives.render = 1;
 	primitives.timestep = timestep;
+	primitives.blocking = 1;
 	int status = parse_commandline(&primitives, argc, argv);
 
 	if(status < 0){

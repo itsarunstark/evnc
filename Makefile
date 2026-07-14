@@ -95,7 +95,7 @@ clean:
 	rm -r ${LIB}
 
 run:	${BIN}/evnc
-	exec ${BIN}/evnc -f ./share/fragment2.glsl -v ./share/vertex.glsl -t 75.00
+	exec ${BIN}/evnc -f ./share/fragment2.glsl -v ./share/vertex.glsl -t 75.00 -n
 
 test:	${BIN}/evnc
 	valgrind ${BIN}/evnc

@@ -184,7 +184,7 @@ void wl_pointer_enter(
 
 	struct evnc_primitives *primitives = (struct evnc_primitives *)data;
 	printf("(%s) pointer has been entered.\n", __func__);
-	primitives->events |= FOCUS_ON;
+	if(primitives->blocking) primitives->events |= FOCUS_ON;
 }
 
 void wl_pointer_leave(
@@ -195,7 +195,7 @@ void wl_pointer_leave(
 
 	struct evnc_primitives *primitives = (struct evnc_primitives *)data;
 	printf("(%s) pointer has been left.\n", __func__);
-	primitives->events |= FOCUS_OFF;
+	if(primitives->blocking) primitives->events |= FOCUS_OFF;
 }
 
 

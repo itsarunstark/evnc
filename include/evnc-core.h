@@ -49,12 +49,13 @@ struct evnc_primitives{
 	uint32_t 			width, height, min_width, min_height;
 	void 				*user_data;
 	int (*init_callback)(struct evnc_primitives *primitives);
-	double mouse_x, mouse_y, timestep, timedelta;
-	char const *vertex_source;
-	char const *fragment_source;
-	uint32_t events;
-	uint32_t render;
-	int lock_fd;
+	double 				mouse_x, mouse_y, timestep, timedelta;
+	char const 			*vertex_source;
+	char const 			*fragment_source;
+	uint32_t 			events;
+	uint32_t 			render;
+	int 				lock_fd;
+	int 				blocking;
 };
 
 typedef struct evnc_primitives * EVNCPrimitives;
